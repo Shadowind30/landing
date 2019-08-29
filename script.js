@@ -102,3 +102,5 @@ setInterval(function punto(){
 },1000)
 
 hora = formatoHora(horaPunto);
+
+console.clear();
