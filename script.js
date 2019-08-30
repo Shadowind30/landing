@@ -1,11 +1,12 @@
 let fecha = document.querySelector("#fecha-placeholder");
 let hora;
 let nombre = "Carlos";
+let cumple="30 de agosto de 2019";
 
 let titulo = document.querySelector("#titulo")
 
 setInterval(function cambioCont() {
-if ((hora >=19 && hora<23) || (hora >=0 && hora<6)) {
+if ((hora >=19 && hora<=23) || (hora >=0 && hora<6)) {
     titulo.innerHTML = "Buenas noches"+" "+nombre;
     document.documentElement.style.setProperty('--imagen', 'url("img/noche.jpg")');
 }
