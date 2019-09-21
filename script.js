@@ -1,24 +1,32 @@
 let fecha = document.querySelector("#fecha-placeholder");
+let cajaTexto = document.querySelector("#text-field");
 let hora;
-let nombre = "Carlos";
-let cumple="30 de agosto de 2019";
-
-let titulo = document.querySelector("#titulo")
+let nombre = localStorage.getItem('nombre');;
+let titulo = document.querySelector("#titulo");
 
 setInterval(function cambioCont() {
 if (hora >=19 || hora<6) {
     titulo.innerHTML = "Buenas noches"+" "+nombre;
     document.documentElement.style.setProperty('--imagen', 'url("img/noche.jpg")');
+    /*Push.create("Buenas noches",{
+        timeout:5000
+    });*/
 }
 
 if (hora >=6 && hora<12){
     titulo.innerHTML = "Buenos dias"+" "+nombre;
-    document.documentElement.style.setProperty('--imagen', 'url("img/dia.jpg")');    
+    document.documentElement.style.setProperty('--imagen', 'url("img/dia.jpg")');  
+  /*  Push.create("Buenos dias, ya te despertaste?",{
+        timeout:5000
+    }); */ 
 }
 
 if (hora >=12 && hora<19){
     titulo.innerHTML = "Buenas tardes"+" "+nombre;
-    document.documentElement.style.setProperty('--imagen', 'url("img/tarde.jpg")');    
+    document.documentElement.style.setProperty('--imagen', 'url("img/tarde.jpg")');   
+   /* Push.create("Buenas tardes, ya almorzaste?",{
+        timeout:5000
+    }); */
 }
 
 },1000);
@@ -105,3 +113,7 @@ setInterval(function punto(){
 hora = formatoHora(horaPunto);
 
 console.clear();
+
+function cambiarNombre(){
+    localStorage.setItem('nombre',  cajaTexto.value);
+}

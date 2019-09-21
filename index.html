@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1 id="titulo">Bienvenido Carlos!</h1>
+    <h1 id="titulo">Bienvenido </h1>
     <br><br><br>
    
     <br><br>
@@ -18,37 +18,43 @@
         </div>
         <div id="cont-2">
                 <div class="sitio">
-                        <a href="https://youtube.com"><img src="img/yt.png" alt="Youtube"></a>
+                        <a href="https://youtube.com"  target="_blank"><img src="img/yt.png" alt="Youtube"></a>
                         <p class="stio-desc">Youtube</p>
                     </div>
 
                     <div class="sitio">
-                        <a href="https://web.whatsapp.com"><img   src="img/ws.png" alt="Whatsapp"></a>
+                        <a href="https://web.whatsapp.com" target="_blank"><img src="img/ws.png"  alt="Whatsapp" ></a>
                         <p class="stio-desc">Whatsapp Web</p>
                     </div>
 
                     <div class="sitio">
-                        <a href="https://trello.com"><img   src="img/trl.png"  alt="Trello"></a>
+                        <a href="https://trello.com" target="_blank"><img src="img/trl.png"  alt="Trello" ></a>
                         <p class="stio-desc">Trello</p>
                     </div>        
 
                     <div class="sitio">
-                        <a href="https://solowrestling.mundodeportivo.com"><img src="img/sw.png" alt="Solowrestling"></a>
+                        <a href="https://solowrestling.mundodeportivo.com"  target="_blank"><img src="img/sw.png" alt="Solowrestling"></a>
                         <p class="stio-desc">Solowrestling</p>
                     </div>
             
                     <div class="sitio">
-                        <a href="https://onlinevideoconverter.com"><img src="img/ovcB.png" alt="OVC"></a>
+                        <a href="https://onlinevideoconverter.com" target="_blank"><img src="img/ovcB.png" alt="OVC" ></a>
                         <p class="stio-desc">Online Video Converter</p>
                     </div>
             
                     <div class="sitio">
-                        <a href="https://github.com"><img src="img/git.png" alt="GitHub"></a>
+                        <a href="https://github.com" target="_blank"><img src="img/git.png" alt="GitHub" ></a>
                         <p class="stio-desc">GitHub</p>
                     </div>      
+
+                    
         </div>
         
      <p id="fecha-placeholder"></p>
+     <form >
+     <input type="text" id="text-field"  maxlength="50" minlength="4" required>
+     <button id="cambiar-nombre" onclick="cambiarNombre();">Cambiar nombre</button>
+    </form>
 
      <div id="events">
          <!----h3 id="event-title">Cosas de hoy</h3-->
@@ -58,5 +64,7 @@
  
 </body>
 <script src="js/moment-with-locales.min.js"></script>
+<script src="serviceWorker.min.js"></script>
+<script src="push.js"></script>
 <script src="script.js"></script>
 </html>

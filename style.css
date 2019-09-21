@@ -75,3 +75,8 @@ body{
     font-size: 2em;
     
 }
+
+#cambiar-nombre,#text-field{
+    background: #000;
+    padding: 20px;
+}
