@@ -1,8 +1,10 @@
 let fecha = document.querySelector("#fecha-placeholder");
 let cajaTexto = document.querySelector("#text-field");
 let hora;
-let nombre = localStorage.getItem('nombre');;
+let nombre = localStorage.getItem('nombre');
 let titulo = document.querySelector("#titulo");
+
+validarNombre();
 
 setInterval(function cambioCont() {
 if (hora >=19 || hora<6) {
@@ -116,4 +118,11 @@ console.clear();
 
 function cambiarNombre(){
     localStorage.setItem('nombre',  cajaTexto.value);
+    nombre=localStorage.getItem('nombre');
+}
+
+function validarNombre(){
+    if (localStorage.nombre=="null"){
+        nombre="Usuario";
+    }
 }
