@@ -66,6 +66,13 @@ body{
     color:black;
 }
 
+.sitio:hover{
+    background: #444;
+    overflow: hidden;
+    text-align: center;
+    color:white;
+}
+
 #fecha-placeholder{
     width: 100%;
     background: rgba(0,0,0,0.4);
@@ -77,6 +84,13 @@ body{
 }
 
 #cambiar-nombre,#text-field{
-    background: #000;
+    background: rgba(0,0,0,0);
     padding: 20px;
+    border: 2px solid white;
+    margin-bottom: 5%;
+}
+
+#cambiar-nombre:hover,#text-field:hover{
+    color:black;
+    border: 2px solid black;
 }
