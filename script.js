@@ -122,7 +122,7 @@ function cambiarNombre(){
 }
 
 function validarNombre(){
-    if ((localStorage.nombre=="null") || (localStorage.nombre==null) || (typeof(localStorage.nombre)==null));  {
+    if ((localStorage.nombre=="null") || (localStorage.nombre==null) || (typeof(localStorage.nombre)==null)|| (localStorage.nombre==undefined) || (typeof(localStorage.nombre)==undefined));  {
         nombre="Usuario";
     }
 }
