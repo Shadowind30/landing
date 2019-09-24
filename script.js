@@ -1,7 +1,7 @@
 let fecha = document.querySelector("#fecha-placeholder");
 let cajaTexto = document.querySelector("#text-field");
 let hora;
-let nombre = localStorage.getItem('nombre');
+let nombre;
 let titulo = document.querySelector("#titulo");
 
 validarNombre();
@@ -122,7 +122,11 @@ function cambiarNombre(){
 }
 
 function validarNombre(){
-    if ((localStorage.nombre=="null") || (localStorage.nombre==null) || (typeof(localStorage.nombre)==null)|| (localStorage.nombre==undefined) || (typeof(localStorage.nombre)==undefined));  {
+    if (localStorage.nombre!="null")  {
+        nombre=localStorage.getItem('nombre');
+    }
+    else{
         nombre="Usuario";
     }
+
 }
