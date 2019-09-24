@@ -122,7 +122,7 @@ function cambiarNombre(){
 }
 
 function validarNombre(){
-    if (localStorage.nombre!="null") || (localStorage.nombre!="undefined") {
+    if ((localStorage.nombre!="null") || (localStorage.nombre!="undefined")) {
         nombre=localStorage.getItem('nombre');
     }
     else{
