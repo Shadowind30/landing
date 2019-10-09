@@ -118,12 +118,12 @@ console.clear();
 
 function cambiarNombre(){
     localStorage.setItem('nombre',  cajaTexto.value);
-    nombre=localStorage.getItem('nombre');
+    nombre=localStorage.nombre;
 }
 
 function validarNombre(){
     if ((localStorage.nombre!="null") || (localStorage.nombre!="undefined")) {
-        nombre=localStorage.getItem('nombre');
+        nombre=localStorage.nombre;
     }
     else{
         nombre="Usuario";
