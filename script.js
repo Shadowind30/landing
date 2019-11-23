@@ -104,8 +104,6 @@ function formatoHora(hora){
     return nHora;
 }
 
-//console.clear();
-
 function cambiarNombre(){
   localStorage.setItem('nombre',  cajaTexto.value);
   nombre = localStorage.nombre;
