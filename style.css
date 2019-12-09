@@ -1,5 +1,5 @@
 :root{
-    --imagen: c_aqua;
+    --imagen: #000;
 }
 
 *{
@@ -70,7 +70,6 @@ body{
     border: 2px solid #fff; 
 
 }
-
 
 
 #fecha-placeholder{
