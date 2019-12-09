@@ -47,29 +47,28 @@ body{
 
 }
 .sitio{
-    
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 5px;;
     text-align: center;
     background: rgba(0,0,0,0);
-    border: 2px solid #fff;
-    width:15%;
-    margin:2.5% 0; 
+    border: 2px solid rgba(0,0,0,0);
+    margin:25% 0; 
+    padding: 5px;
+    text-decoration: none;
  
 }
 
 .sitio img, .sitio p{
-    width: 90%;
     overflow: hidden;
     text-align: center;
     color:white;
+    
 }
 
 .sitio:hover{
-    border: 2px solid #333;
-    border-radius: 10px; 
+    border: 2px solid #fff; 
+
 }
 
 
@@ -91,7 +90,7 @@ body{
     margin-bottom: 5%;
 }
 
-#cambiar-nombre:hover,#text-field:hover{
+#cambiar-nombre:hover{
     color:black;
     border: 2px solid black;
 }
