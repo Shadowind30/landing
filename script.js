@@ -105,6 +105,8 @@ function formatoHora(hora){
 }
 
 function cambiarNombre(){
-  localStorage.setItem('nombre',  cajaTexto.value);
-  nombre = localStorage.nombre;
+  if(cajaTexto.value !== ''){
+    localStorage.setItem('nombre',  cajaTexto.value);
+    nombre = localStorage.nombre;
+  }_
 }
