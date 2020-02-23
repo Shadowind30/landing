@@ -1,5 +1,6 @@
 moment.locale("ES-DO");
 
+const alerta = document.querySelector('#alerta');
 const fecha = document.querySelector('#fecha-placeholder');
 const cajaTexto = document.querySelector('#text-field');
 const titulo = document.querySelector('#titulo');
@@ -21,17 +22,17 @@ hora = formatoHora(horaPunto);
 setInterval(function cambioCont() {
 if (hora >= 19 || hora < 6) {
     titulo.innerHTML = 'Buenas noches' + ' ' + nombre;
-    document.documentElement.style.setProperty('--imagen', 'url("img/noche.jpg")');
+    cambiarFondo('img/noche.jpg');
 }
 
 if (hora >=6 && hora<12){
     titulo.innerHTML = 'Buenos dias' + ' ' + nombre;
-    document.documentElement.style.setProperty('--imagen', 'url("img/dia.jpg")');
+    cambiarFondo('img/dia.jpg');
 }
 
 if (hora >=12 && hora<19){
     titulo.innerHTML = 'Buenas tardes' + ' ' + nombre;
-    document.documentElement.style.setProperty('--imagen', 'url("img/tarde.jpg")');   
+    cambiarFondo('img/tarde.jpg');  
 }
 
 tab.innerHTML = titulo.innerHTML;
@@ -105,8 +106,18 @@ function formatoHora(hora){
 }
 
 function cambiarNombre(){
+  if (cajaTexto.value === localStorage.nombre) return;
+
   if(cajaTexto.value !== ''){
     localStorage.setItem('nombre',  cajaTexto.value);
     nombre = localStorage.nombre;
-  }_
+    alerta.style.display = 'none';
+  } else {
+      alerta.style.display = 'block';
+  }
+
+}
+
+function cambiarFondo(fondoUrl){
+  document.documentElement.style.setProperty('--imagen',`url(${fondoUrl}`);
 }

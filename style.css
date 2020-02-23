@@ -11,7 +11,7 @@
 
 body{
     
- background:var(--imagen);
+ background: var(--imagen);
  background-repeat: no-repeat;
  background-size: cover;
  background-position: center center;
@@ -71,6 +71,9 @@ body{
 
 }
 
+#alerta{
+    display: none;
+}
 
 #fecha-placeholder{
     width: 100%;
