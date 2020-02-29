@@ -72,3 +72,7 @@ function cambiarNombre(){
 function cambiarFondo(fondoUrl){
   document.documentElement.style.setProperty('--imagen',`url(${fondoUrl}`);
 }
+
+function CambioAlerta(){
+  alerta.style.display = alerta.style.display === 'block' ? 'none' : 'block';
+}

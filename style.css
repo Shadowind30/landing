@@ -10,13 +10,13 @@
 }
 
 body{
-    
+
  background: var(--imagen);
  background-repeat: no-repeat;
  background-size: cover;
  background-position: center center;
  background-attachment: fixed;
-    
+
 }
 
 #titulo{ background: rgba(0,0,0,0.4);
@@ -28,14 +28,14 @@ body{
 
 
 #sitios{
-    
+
     background: rgba(0,0,0,0.4);
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
-    
+
 }
 
 #cont-2{
@@ -53,26 +53,31 @@ body{
     text-align: center;
     background: rgba(0,0,0,0);
     border: 2px solid rgba(0,0,0,0);
-    margin:25% 0; 
+    margin:25% 0;
     padding: 5px;
     text-decoration: none;
- 
+
 }
 
 .sitio img, .sitio p{
     overflow: hidden;
     text-align: center;
     color:white;
-    
+
 }
 
 .sitio:hover{
-    border: 2px solid #fff; 
+    border: 2px solid #fff;
 
 }
 
 #alerta{
     display: none;
+    cursor: pointer;
+}
+
+#alerta:hover {
+  color: black;
 }
 
 #fecha-placeholder{
@@ -82,7 +87,7 @@ body{
     text-align: center;
     margin-top: 10%;
     font-size: 2em;
-    
+
 }
 
 #cambiar-nombre,#text-field{
