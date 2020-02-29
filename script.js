@@ -22,12 +22,12 @@ hora = formatoHora(horaPunto);
 setInterval(function cambioCont() {
 if (hora >= 19 || hora < 6) {
     titulo.innerHTML = 'Buenas noches' + ' ' + nombre;
-    cambiarFondo('img/noche.jpg');
+    cambiarFondo('img/noche.webp');
 }
 
 if (hora >=6 && hora<12){
     titulo.innerHTML = 'Buenos dias' + ' ' + nombre;
-    cambiarFondo('img/dia.jpg');
+    cambiarFondo('img/dia.webp');
 }
 
 if (hora >=12 && hora<19){
