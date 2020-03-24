@@ -90,7 +90,7 @@ body{
 
 }
 
-#cambiar-nombre,#text-field{
+#idioma,#cambiar-nombre,#text-field{
     background: rgba(0,0,0,0);
     padding: 20px;
     border: 2px solid white;
