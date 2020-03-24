@@ -1,17 +1,36 @@
-moment.locale("ES-DO");
 
 const alerta = document.querySelector('#alerta');
 const fecha = document.querySelector('#fecha-placeholder');
 const cajaTexto = document.querySelector('#text-field');
 const titulo = document.querySelector('#titulo');
 const tab = document.querySelector('#titulo-tab');
+const textoSitio = document.querySelector('#texto-sitios');
+const btnIdioma = document.querySelector('#idioma');
+const btnNombre = document.querySelector('#cambiar-nombre');
 
+let txtUsuario = 'Usuario';
+let msgDia = 'Buenos Dias';
+let msgTarde = 'Buenas Tardes';
+let msgNoche = 'Buenas Noches';
+let msgSitios = 'Quieres visitar algun sitio frecuente?';
+let msgAlerta = 'El campo no puede estar vacio';
+let txtIdioma = 'ESP';
+let txtCambioNombre = 'Cambiar Nombre';
+
+let idioma = localStorage.idioma === undefined ? 'ESP' : localStorage.idioma;
 let hora = 0;
-let nombre = localStorage.nombre === undefined ? 'Usuario' : localStorage.nombre;
+let nombre = localStorage.nombre === undefined ? txtUsuario : localStorage.nombre;
 let horaPunto = moment().format("LT").toLowerCase().split('');
 
 if (horaPunto[1] === ':'){
     horaPunto.unshift('0');
+}
+
+function actualizarHTML(){
+alerta.innerHTML = msgAlerta;
+textoSitio.innerHTML = msgSitios;
+btnIdioma.innerHTML = txtIdioma;
+btnNombre.innerHTML = txtCambioNombre;
 }
 
 horaPunto[3] = '0';
@@ -21,17 +40,17 @@ hora = formatoHora(horaPunto);
 
 setInterval(function cambioCont() {
 if (hora >= 19 || hora < 6) {
-    titulo.innerHTML = 'Buenas noches' + ' ' + nombre;
+    titulo.innerHTML = msgNoche + ' ' + nombre;
     cambiarFondo('img/noche.webp');
 }
 
 if (hora >=6 && hora<12){
-    titulo.innerHTML = 'Buenos dias' + ' ' + nombre;
+    titulo.innerHTML = msgDia + ' ' + nombre;
     cambiarFondo('img/dia.webp');
 }
 
 if (hora >=12 && hora<19){
-    titulo.innerHTML = 'Buenas tardes' + ' ' + nombre;
+    titulo.innerHTML = msgTarde + ' ' + nombre;
     cambiarFondo('img/tarde.jpg');
 }
 
@@ -76,3 +95,48 @@ function cambiarFondo(fondoUrl){
 function CambioAlerta(){
   alerta.style.display = alerta.style.display === 'block' ? 'none' : 'block';
 }
+
+function setLocale(){
+  if(idioma === 'ENG'){
+    moment.locale('EN-US');
+  }
+  else{
+    moment.locale('ES-DO');
+  }
+}
+
+function cambiarIdioma(){
+
+  localStorage.setItem('idioma', (idioma === 'ESP' ? 'ENG' : 'ESP'));
+  idioma = localStorage.idioma;
+  cambiarTexto();
+
+  setLocale()
+}
+
+function cambiarTexto(){
+  if (localStorage.idioma === 'ENG' ){
+    txtUsuario = 'User'
+    msgDia = 'Good Morning';
+    msgTarde = 'Good Afternoon';
+    msgNoche = 'Good Night';
+    msgSitios = 'Do you wanna go somewhere?';
+    msgAlerta = 'Field cannot be empty';
+    txtIdioma = 'ENG';
+    txtCambioNombre = 'Change Name';
+  }
+  else{
+    txtUsuario = 'Usuario';
+    msgDia = 'Buenos Dias';
+    msgTarde = 'Buenas Tardes';
+    msgNoche = 'Buenas Noches';
+    msgSitios = 'Quieres visitar algun sitio frecuente?';
+    msgAlerta = 'El campo no puede estar vacio';
+    txtIdioma = 'ESP';
+    txtCambioNombre = 'Cambiar Nombre';
+  }
+  actualizarHTML();
+
+}
+
+cambiarTexto();
