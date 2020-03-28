@@ -90,9 +90,13 @@ body{
 
 }
 
-#idioma,#cambiar-nombre,#text-field{
+#idioma,#text-field{
     background: rgba(0,0,0,0);
     padding: 20px;
     border: 2px solid white;
     margin-bottom: 5%;
+}
+
+::placeholder{
+  color: #ddd;
 }
