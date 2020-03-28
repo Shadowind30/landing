@@ -1,13 +1,9 @@
-
-
-const alerta = document.querySelector('#alerta');
 const fecha = document.querySelector('#fecha-placeholder');
 const cajaTexto = document.querySelector('#text-field');
 const titulo = document.querySelector('#titulo');
 const tab = document.querySelector('#titulo-tab');
 const textoSitio = document.querySelector('#texto-sitios');
 const btnIdioma = document.querySelector('#idioma');
-const btnNombre = document.querySelector('#cambiar-nombre');
 
 let txtUsuario = 'Usuario';
 let msgDia = 'Buenos Dias';
@@ -32,10 +28,8 @@ if (horaPunto[1] === ':'){
 }
 
 function actualizarHTML(){
-alerta.innerHTML = msgAlerta;
 textoSitio.innerHTML = msgSitios;
 btnIdioma.innerHTML = txtIdioma;
-btnNombre.innerHTML = txtCambioNombre;
 }
 
 horaPunto[3] = '0';
