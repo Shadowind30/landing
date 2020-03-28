@@ -96,8 +96,3 @@ body{
     border: 2px solid white;
     margin-bottom: 5%;
 }
-
-#cambiar-nombre:hover{
-    color:black;
-    border: 2px solid black;
-}

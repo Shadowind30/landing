@@ -50,13 +50,17 @@
         </div>
 
      <p id="fecha-placeholder"></p>
-     <br/><br/>
-     <p id="alerta" onclick="CambioAlerta()">El campo no puede estar vacio</p>
      <br>
     <div>
      <button  id="idioma" onclick="cambiarIdioma()">ESP</button>
-     <input type="text" autocomplete="off" id="text-field"  maxlength="50" minlength="1" required>
-     <button id="cambiar-nombre" onclick="cambiarNombre()">Cambiar nombre</button>
+     <input
+     type="text"
+     autocomplete="off"
+     placeholder="Nombre / Name"
+     id="text-field"
+     oninput="cambiarNombre()"
+     maxlength="50"
+     >
     </div>
 
 

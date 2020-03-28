@@ -21,9 +21,11 @@ let txtCambioNombre = 'Cambiar Nombre';
 let idioma = localStorage.idioma === undefined ? 'ESP' : localStorage.idioma;
 let hora = 0;
 let nombre = localStorage.nombre === undefined ? txtUsuario : localStorage.nombre;
+
 let horaPunto = moment().format("LT").toLowerCase().split('');
 
 setLocale();
+cajaTexto.value = nombre;
 
 if (horaPunto[1] === ':'){
     horaPunto.unshift('0');
@@ -79,16 +81,8 @@ function formatoHora(hora){
 }
 
 function cambiarNombre(){
-  if (cajaTexto.value === localStorage.nombre) return;
-
-  if(cajaTexto.value !== ''){
     localStorage.setItem('nombre',  cajaTexto.value);
     nombre = localStorage.nombre;
-    alerta.style.display = 'none';
-  } else {
-      alerta.style.display = 'block';
-  }
-
 }
 
 function cambiarFondo(fondoUrl){
