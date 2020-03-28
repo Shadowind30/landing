@@ -1,4 +1,5 @@
 
+
 const alerta = document.querySelector('#alerta');
 const fecha = document.querySelector('#fecha-placeholder');
 const cajaTexto = document.querySelector('#text-field');
@@ -21,6 +22,8 @@ let idioma = localStorage.idioma === undefined ? 'ESP' : localStorage.idioma;
 let hora = 0;
 let nombre = localStorage.nombre === undefined ? txtUsuario : localStorage.nombre;
 let horaPunto = moment().format("LT").toLowerCase().split('');
+
+setLocale();
 
 if (horaPunto[1] === ':'){
     horaPunto.unshift('0');
