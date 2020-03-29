@@ -5,29 +5,31 @@ const tab = document.querySelector('#titulo-tab');
 const textoSitio = document.querySelector('#texto-sitios');
 const btnIdioma = document.querySelector('#idioma');
 
-let txtUsuario = 'Usuario';
+let txtUsuario = '';
 let msgDia = 'Buenos Dias';
 let msgTarde = 'Buenas Tardes';
 let msgNoche = 'Buenas Noches';
 let msgSitios = 'Quieres visitar algun sitio frecuente?';
 let msgAlerta = 'El campo no puede estar vacio';
 let txtIdioma = 'ESP';
-let txtCambioNombre = 'Cambiar Nombre';
 
 let idioma = localStorage.idioma === undefined ? 'ESP' : localStorage.idioma;
 let hora = 0;
-let nombre = localStorage.nombre === 'undefined' ? txtUsuario : localStorage.nombre;
+let nombre = cargarNombre();
 
 let horaPunto = moment().format("LT").toLowerCase().split('');
 
 setLocale();
-cajaTexto.value = nombre;
+if (localStorage.nombre !== 'undefined' && localStorage.nombre !== '') {
+  cajaTexto.value = nombre;
+}
 
 if (horaPunto[1] === ':'){
     horaPunto.unshift('0');
 }
 
 function actualizarHTML(){
+nombre = cargarNombre();
 textoSitio.innerHTML = msgSitios;
 btnIdioma.innerHTML = txtIdioma;
 }
@@ -74,9 +76,16 @@ function formatoHora(hora){
     return nHora;
 }
 
+function cargarNombre(){
+  const ls = localStorage;
+  txtUsuario = (ls.idioma === 'ESP' ? 'Usuario' : 'User');
+  return ((ls.nombre === 'undefined' || ls.nombre === '' ) ? txtUsuario : ls.nombre);
+}
+
+
 function cambiarNombre(){
-    localStorage.setItem('nombre',  cajaTexto.value);
-    nombre = localStorage.nombre;
+  localStorage.setItem('nombre',  cajaTexto.value);
+  nombre = cargarNombre();
 }
 
 function cambiarFondo(fondoUrl){
@@ -97,7 +106,7 @@ function setLocale(){
 }
 
 function cambiarIdioma(){
-
+  
   localStorage.setItem('idioma', (idioma === 'ESP' ? 'ENG' : 'ESP'));
   idioma = localStorage.idioma;
   cambiarTexto();
@@ -114,7 +123,6 @@ function cambiarTexto(){
     msgSitios = 'Do you wanna go somewhere?';
     msgAlerta = 'Field cannot be empty';
     txtIdioma = 'ENG';
-    txtCambioNombre = 'Change Name';
   }
   else{
     txtUsuario = 'Usuario';
@@ -124,7 +132,6 @@ function cambiarTexto(){
     msgSitios = 'Quieres visitar algun sitio frecuente?';
     msgAlerta = 'El campo no puede estar vacio';
     txtIdioma = 'ESP';
-    txtCambioNombre = 'Cambiar Nombre';
   }
   actualizarHTML();
 
