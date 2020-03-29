@@ -16,7 +16,7 @@ let txtCambioNombre = 'Cambiar Nombre';
 
 let idioma = localStorage.idioma === undefined ? 'ESP' : localStorage.idioma;
 let hora = 0;
-let nombre = localStorage.nombre === undefined ? txtUsuario : localStorage.nombre;
+let nombre = localStorage.nombre === 'undefined' ? txtUsuario : localStorage.nombre;
 
 let horaPunto = moment().format("LT").toLowerCase().split('');
 
