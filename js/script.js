@@ -10,17 +10,16 @@ let msgDia = 'Buenos Dias';
 let msgTarde = 'Buenas Tardes';
 let msgNoche = 'Buenas Noches';
 let msgSitios = 'Quieres visitar algun sitio frecuente?';
-let msgAlerta = 'El campo no puede estar vacio';
 let txtIdioma = 'ESP';
 
-let idioma = localStorage.idioma === undefined ? 'ESP' : localStorage.idioma;
+let idioma = !!localStorage.idioma ? localStorage.idioma : 'ESP';
 let hora = 0;
 let nombre = cargarNombre();
 
 let horaPunto = moment().format("LT").toLowerCase().split('');
 
 setLocale();
-if (localStorage.nombre !== 'undefined' && localStorage.nombre !== '') {
+if (!!localStorage.nombre) {
   cajaTexto.value = nombre;
 }
 
@@ -30,8 +29,8 @@ if (horaPunto[1] === ':'){
 
 function actualizarHTML(){
 nombre = cargarNombre();
-textoSitio.innerHTML = msgSitios;
-btnIdioma.innerHTML = txtIdioma;
+textoSitio.innerText = msgSitios;
+btnIdioma.innerText = txtIdioma;
 }
 
 horaPunto[3] = '0';
@@ -79,7 +78,7 @@ function formatoHora(hora){
 function cargarNombre(){
   const ls = localStorage;
   txtUsuario = (ls.idioma === 'ESP' ? 'Usuario' : 'User');
-  return ((ls.nombre === 'undefined' || ls.nombre === '' ) ? txtUsuario : ls.nombre);
+  return !ls.nombre  ? txtUsuario : ls.nombre;
 }
 
 
@@ -92,17 +91,15 @@ function cambiarFondo(fondoUrl){
   document.documentElement.style.setProperty('--imagen',`url(${fondoUrl}`);
 }
 
-function CambioAlerta(){
-  alerta.style.display = alerta.style.display === 'block' ? 'none' : 'block';
-}
-
 function setLocale(){
   if(idioma === 'ENG'){
     moment.locale('EN-US');
+
   }
   else{
     moment.locale('ES-DO');
   }
+  localStorage.idioma = idioma;
 }
 
 function cambiarIdioma(){
