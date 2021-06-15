@@ -1,9 +1,10 @@
 const fecha = document.querySelector('#fecha-placeholder');
-const cajaTexto = document.querySelector('#text-field');
+const input = document.querySelector('#text-field');
 const titulo = document.querySelector('#titulo');
 const tab = document.querySelector('#titulo-tab');
 const textoSitio = document.querySelector('#texto-sitios');
 const btnIdioma = document.querySelector('#idioma');
+const tempPlaceHolder = document.querySelector('#temp')
 
 let txtUsuario = '';
 let msgDia = 'Buenos Dias';
@@ -14,21 +15,21 @@ let txtIdioma = 'ESP';
 
 let idioma = !!localStorage.idioma ? localStorage.idioma : 'ESP';
 let hora = 0;
-let nombre = cargarNombre();
+let nombre = getName();
 
 let horaPunto = moment().format("LT").toLowerCase().split('');
 
 setLocale();
 if (!!localStorage.nombre) {
-  cajaTexto.value = nombre;
+  input.value = nombre;
 }
 
 if (horaPunto[1] === ':'){
     horaPunto.unshift('0');
 }
 
-function actualizarHTML(){
-nombre = cargarNombre();
+function updateTemplate(){
+nombre = getName();
 textoSitio.innerText = msgSitios;
 btnIdioma.innerText = txtIdioma;
 }
@@ -36,22 +37,22 @@ btnIdioma.innerText = txtIdioma;
 horaPunto[3] = '0';
 horaPunto[4] = '0';
 horaPunto = horaPunto.join('');
-hora = formatoHora(horaPunto);
+hora = formatHour(horaPunto);
 
 setInterval(function cambioCont() {
 if (hora >= 19 || hora < 6) {
     titulo.innerHTML = msgNoche + ' ' + nombre;
-    cambiarFondo('img/noche.webp');
+    changeBg('img/noche.webp');
 }
 
 if (hora >=6 && hora<12){
     titulo.innerHTML = msgDia + ' ' + nombre;
-    cambiarFondo('img/dia.webp');
+    changeBg('img/dia.webp');
 }
 
 if (hora >=12 && hora<19){
     titulo.innerHTML = msgTarde + ' ' + nombre;
-    cambiarFondo('img/tarde.jpg');
+    changeBg('img/tarde.jpg');
 }
 
 tab.innerHTML = titulo.innerHTML;
@@ -64,7 +65,7 @@ setInterval(function updateFecha() {
 },1000);
 
 
-function formatoHora(hora){
+function formatHour(hora){
     let nHora = Number(hora[0] + hora[1]);
     if (nHora !== 12){
     nHora = hora.includes('a') ? nHora : nHora + 12;
@@ -75,19 +76,19 @@ function formatoHora(hora){
     return nHora;
 }
 
-function cargarNombre(){
+function getName(){
   const ls = localStorage;
   txtUsuario = (ls.idioma === 'ESP' ? 'Usuario' : 'User');
   return !ls.nombre  ? txtUsuario : ls.nombre;
 }
 
 
-function cambiarNombre(){
-  localStorage.setItem('nombre',  cajaTexto.value);
-  nombre = cargarNombre();
+function changeName(){
+  localStorage.setItem('nombre',  input.value);
+  nombre = getName();
 }
 
-function cambiarFondo(fondoUrl){
+function changeBg(fondoUrl){
   document.documentElement.style.setProperty('--imagen',`url(${fondoUrl}`);
 }
 
@@ -102,16 +103,16 @@ function setLocale(){
   localStorage.idioma = idioma;
 }
 
-function cambiarIdioma(){
+function changeLang(){
   
   localStorage.setItem('idioma', (idioma === 'ESP' ? 'ENG' : 'ESP'));
   idioma = localStorage.idioma;
-  cambiarTexto();
+  changeText();
 
   setLocale()
 }
 
-function cambiarTexto(){
+function changeText(){
   if (localStorage.idioma === 'ENG' ){
     txtUsuario = 'User'
     msgDia = 'Good Morning';
@@ -130,9 +131,29 @@ function cambiarTexto(){
     msgAlerta = 'El campo no puede estar vacio';
     txtIdioma = 'ESP';
   }
-  actualizarHTML();
+  updateTemplate();
 
 }
 
-cambiarTexto();
+changeText();
 
+function getLocation() {
+  let position = null;
+  navigator.geolocation.getCurrentPosition(pos => {
+    position = {
+      latitude: pos.coords.latitude,
+      longitude: pos.coords.longitude
+    }
+    getWeather(position.latitude, position.longitude);
+  })
+
+  return position;
+}
+async function getWeather(latitude, longitude) {
+  let res = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely,hourly,daily&units=metric&appid=d2d6b67ea1453a77081c16c2d1b80cee`);
+  let data = await res.json();
+  //console.log(data.current.temp)
+  tempPlaceHolder.innerText = data.current.temp + ' °C'
+}
+
+getLocation()

@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title id="titulo-tab">Landing Newtab</title>
     <link rel="stylesheet" href="style.css">
+    <script src="js/moment-with-locales.min.js" defer></script>
+    <script src="js/script.js" defer></script>
+    <title id="titulo-tab">Landing Newtab</title>
 </head>
 <body>
     <h1 id="titulo">Landing Newtab</h1>
@@ -50,20 +52,25 @@
         </div>
 
      <p id="fecha-placeholder"></p>
-     <br><br><br>
-    <div>
-     <button  id="idioma" onclick="cambiarIdioma()">ESP</button>
-     <input
-     type="text"
-     autocomplete="off"
-     placeholder="Nombre / Name"
-     id="text-field"
-     oninput="cambiarNombre()"
-     maxlength="50"
-     >
+     <br>
+
+    <div class="bottom">
+        <div>
+            <p id="temp">0 °C</p>
+        </div>
+        <div>
+        <button  id="idioma" onclick="changeLang()">ESP</button>
+        <input
+        type="text"
+        autocomplete="off"
+        placeholder="Nombre / Name"
+        id="text-field"
+        oninput="changeName()"
+        maxlength="50"
+        >
+        </div>
     </div>
 
+
 </body>
-<script src="js/moment-with-locales.min.js"></script>
-<script src="js/script.js"></script>
 </html>

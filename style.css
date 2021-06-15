@@ -90,6 +90,23 @@ body{
 
 }
 
+.bottom {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#temp {
+    /*margin-right: 5rem;
+    font-weight: 800;
+    border: #fff 2px solid;
+    padding: 1rem;*/
+    background: rgba(0,0,0,0);
+    padding: 25px;
+    border: 2px solid white;
+    margin: 0 5rem 8% 2rem;
+}
+
 #idioma,#text-field{
     background: rgba(0,0,0,0);
     padding: 20px;
