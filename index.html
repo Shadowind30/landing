@@ -1,76 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <script src="js/moment-with-locales.min.js" defer></script>
     <script src="js/script.js" defer></script>
     <title id="titulo-tab">Landing Newtab</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1 id="titulo">Landing Newtab</h1>
-    <br><br><br>
+    <br /><br /><br />
 
-    <br><br>
+    <br /><br />
     <div id="sitios">
-        <div id cont-1>
-             <h2 id='texto-sitios'>Quieres visitar algun sitio frecuente?</h2>
-        </div>
-        <div id="cont-2">
-            <div>
-                <a class='sitio' href="https://youtube.com"  target="_blank" title="Youtube">
-                    <img src="img/yt.webp" alt="Youtube">
-                </a>
-            </div>
-            <div>
-                <a class="sitio" href="https://web.whatsapp.com" target="_blank" title="Whatsapp Web">
-                    <img src="img/ws.webp"  alt="Whatsapp" >
-                </a>
-            </div>
-
-            <div>
-                <a class="sitio" href="https://trello.com" target="_blank" title="Trello">
-                    <img src="img/trl.webp"  alt="Trello" >
-                </a>
-            </div>
-
-            <div>
-                <a class="sitio" href="https://2conv.com/es" target="_blank" title="2conv MP3 Converter">
-                    <img src="img/2c.webp" alt="2Conv" >
-                </a>
-            </div>
-
-            <div>
-                <a class="sitio" href="https://github.com" target="_blank" title="GitHub">
-                    <img src="img/git.webp" alt="GitHub" >
-                </a>
-            </div>
-
-
-        </div>
-
-     <p id="fecha-placeholder"></p>
-     <br>
-
-    <div class="bottom">
-        <div>
-            <p id="temp">0 °C</p>
-        </div>
-        <div>
-        <button  id="idioma" onclick="changeLang()">ESP</button>
-        <input
-        type="text"
-        autocomplete="off"
-        placeholder="Nombre / Name"
-        id="text-field"
-        oninput="changeName()"
-        maxlength="50"
-        >
-        </div>
+      <div id cont-1>
+        <h2 id="texto-sitios">¿Quieres visitar algun sitio frecuente?</h2>
+      </div>
+      <div id="cont-2"></div>
     </div>
 
+    <p id="fecha-placeholder"></p>
+    <br />
 
-</body>
+    <div class="bottom">
+      <div>
+        <p id="temp">0 °C</p>
+      </div>
+      <div>
+        <button id="idioma" onclick="changeLang()">ESP</button>
+        <input
+          type="text"
+          autocomplete="off"
+          placeholder="Nombre / Name"
+          id="text-field"
+          oninput="changeName()"
+          maxlength="50"
+        />
+      </div>
+    </div>
+  </body>
 </html>
