@@ -47,6 +47,13 @@ const sites = [
   },
 ];
 
+document.addEventListener("mousemove", (e) => {
+  const x = (e.clientX / window.innerWidth - 0.5) * 10;
+  const y = (e.clientY / window.innerHeight - 0.5) * 10;
+  document.body.style.transform = `translate(${x}px, ${y}px)`;
+  document.body.style.transition = 'transform 0.1s ease-out';
+});
+
 setLocale();
 if (!!localStorage.nombre) {
   input.value = nombre;
@@ -177,7 +184,6 @@ async function getWeather(latitude, longitude) {
     `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely,hourly,daily&units=metric&appid=d2d6b67ea1453a77081c16c2d1b80cee`
   );
   let data = await res.json();
-  //console.log(data.current.temp)
   tempPlaceHolder.innerText = data.current.temp + " °C";
 }
 
@@ -188,7 +194,7 @@ function addSitio(data) {
       <img src="${element.img}" alt="${element.title}">
   </a>
 </div>`;
-    let container = document.getElementById("cont-2");
+    let container = document.getElementById("site-items");
     container.innerHTML += sitio;
   });
 }
