@@ -174,7 +174,7 @@ function getLocation() {
 }
 async function getWeather(latitude, longitude) {
   let res = await fetch(
-    `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely,hourly,daily&units=metric&appid=d2d6b67ea1453a77081c16c2d1b80cee`
+    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&exclude=minutely,hourly,daily&units=metric&appid=d2d6b67ea1453a77081c16c2d1b80cee`
   );
   let data = await res.json();
   //console.log(data.current.temp)
