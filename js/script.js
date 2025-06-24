@@ -178,7 +178,7 @@ async function getWeather(latitude, longitude) {
   );
   let data = await res.json();
   //console.log(data.current.temp)
-  tempPlaceHolder.innerText = data.current.temp + " °C";
+  tempPlaceHolder.innerText = data.main.temp + " °C";
 }
 
 function addSitio(data) {
