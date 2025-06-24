@@ -1,8 +1,8 @@
-const fecha = document.querySelector("#fecha-placeholder");
+const dateElement = document.querySelector("#date-placeholder");
 const input = document.querySelector("#text-field");
-const titulo = document.querySelector("#titulo");
+const title = document.querySelector("#title");
 const tab = document.querySelector("#titulo-tab");
-const textoSitio = document.querySelector("#texto-sitios");
+const subtitle = document.querySelector("#subtitle");
 const btnIdioma = document.querySelector("#idioma");
 const tempPlaceHolder = document.querySelector("#temp");
 
@@ -13,7 +13,7 @@ let msgNoche = "Buenas Noches";
 let msgSitios = "Quieres visitar algun sitio frecuente?";
 let txtIdioma = "ESP";
 
-let idioma = !!localStorage.idioma ? localStorage.idioma : "ESP";
+let idioma = localStorage.idioma ? localStorage.idioma : "ESP";
 let hora = 0;
 let nombre = getName();
 
@@ -58,7 +58,7 @@ if (horaPunto[1] === ":") {
 
 function updateTemplate() {
   nombre = getName();
-  textoSitio.innerText = msgSitios;
+  subtitle.innerText = msgSitios;
   btnIdioma.innerText = txtIdioma;
 }
 
@@ -69,25 +69,25 @@ hora = formatHour(horaPunto);
 
 setInterval(function cambioCont() {
   if (hora >= 19 || hora < 6) {
-    titulo.innerHTML = msgNoche + " " + nombre;
+    title.innerHTML = msgNoche + " " + nombre;
     changeBg("img/noche.webp");
   }
 
   if (hora >= 6 && hora < 12) {
-    titulo.innerHTML = msgDia + " " + nombre;
+    title.innerHTML = msgDia + " " + nombre;
     changeBg("img/dia.webp");
   }
 
   if (hora >= 12 && hora < 19) {
-    titulo.innerHTML = msgTarde + " " + nombre;
+    title.innerHTML = msgTarde + " " + nombre;
     changeBg("img/tarde.jpg");
   }
 
-  tab.innerHTML = titulo.innerHTML;
+  tab.innerHTML = title.innerHTML;
 }, 1000);
 
 setInterval(function updateFecha() {
-  fecha.innerHTML =
+  dateElement.innerHTML =
     moment().format("dddd") +
     " " +
     moment().format("LL") +
@@ -188,7 +188,7 @@ function addSitio(data) {
       <img src="${element.img}" alt="${element.title}">
   </a>
 </div>`;
-    let container = document.getElementById("cont-2");
+    let container = document.getElementById("shorcuts");
     container.innerHTML += sitio;
   });
 }

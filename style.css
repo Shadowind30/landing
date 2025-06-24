@@ -1,25 +1,55 @@
-:root{
-    --imagen: #000;
+:root {
+  --imagen: #000;
+  --offset: 32px;
 }
 
-*{
-    margin: 0;
-    padding:0;
-    font-family: roboto, sans-serif;
-    color: white;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: roboto, sans-serif;
+  color: white;
 }
 
-body{
-
- background: var(--imagen);
- background-repeat: no-repeat;
- background-size: cover;
- background-position: center center;
- background-attachment: fixed;
-
+body {
+  background: var(--imagen);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#titulo{ background: rgba(0,0,0,0.4);
+.container {
+  background: #000;
+  width: calc(100vw - var(--offset));
+  height: calc(100vh - var(--offset));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    flex-direction: column;
+}
+
+#title {
+    font-size: 26px;
+}
+
+#subtitle {
+    font-size: 15px;
+}
+
+/* #titulo{ background: rgba(0,0,0,0.4);
     text-align:center;
     font-size: 3em;
 
@@ -97,10 +127,6 @@ body{
 }
 
 #temp {
-    /*margin-right: 5rem;
-    font-weight: 800;
-    border: #fff 2px solid;
-    padding: 1rem;*/
     background: rgba(0,0,0,0);
     padding: 25px;
     border: 2px solid white;
@@ -116,4 +142,4 @@ body{
 
 ::placeholder{
   color: #ddd;
-}
+} */
