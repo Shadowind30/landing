@@ -10,27 +10,27 @@
     <title id="titulo-tab">Landing Newtab</title>
   </head>
   <body>
-    <h1 id="titulo">Landing Newtab</h1>
-    <br /><br /><br />
-
-    <br /><br />
-    <div id="sitios">
-      <div id cont-1>
-        <h2 id="texto-sitios">¿Quieres visitar algun sitio frecuente?</h2>
+    <div class="container">
+      <div class="header">
+        <div class="date">
+          <p id="temp">0 °C</p>
+          <p id="date-placeholder"></p>
+          <p id="time-placeholder"></p>
+        </div>
+        <div class="titles">
+          <h1 id="title">Landing Newtab</h1>
+          <h2 id="subtitle">¿Quieres visitar algun sitio frecuente?</h2>
+        </div>
       </div>
-      <div id="cont-2"></div>
-    </div>
 
-    <p id="fecha-placeholder"></p>
-    <br />
-
-    <div class="bottom">
-      <div>
-        <p id="temp">0 °C</p>
+      <div class="content">
+        <div id="shortcuts"></div>
       </div>
-      <div>
-        <button id="idioma" onclick="changeLang()">ESP</button>
+
+      <div class="footer">
+        <button class="glass-bg" id="lang-button" onclick="changeLang()">ESP</button>
         <input
+          class="glass-bg"
           type="text"
           autocomplete="off"
           placeholder="Nombre / Name"
