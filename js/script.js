@@ -1,9 +1,10 @@
 const dateElement = document.querySelector("#date-placeholder");
+const timeElement = document.querySelector("#time-placeholder");
 const input = document.querySelector("#text-field");
 const title = document.querySelector("#title");
 const tab = document.querySelector("#titulo-tab");
 const subtitle = document.querySelector("#subtitle");
-const btnIdioma = document.querySelector("#idioma");
+const langButton = document.querySelector("#lang-button");
 const tempPlaceHolder = document.querySelector("#temp");
 
 let txtUsuario = "";
@@ -59,7 +60,7 @@ if (horaPunto[1] === ":") {
 function updateTemplate() {
   nombre = getName();
   subtitle.innerText = msgSitios;
-  btnIdioma.innerText = txtIdioma;
+  langButton.innerText = txtIdioma;
 }
 
 horaPunto[3] = "0";
@@ -69,17 +70,17 @@ hora = formatHour(horaPunto);
 
 setInterval(function cambioCont() {
   if (hora >= 19 || hora < 6) {
-    title.innerHTML = msgNoche + " " + nombre;
+    title.innerHTML = msgNoche + ", " + nombre;
     changeBg("img/noche.webp");
   }
 
   if (hora >= 6 && hora < 12) {
-    title.innerHTML = msgDia + " " + nombre;
+    title.innerHTML = msgDia + ", " + nombre;
     changeBg("img/dia.webp");
   }
 
   if (hora >= 12 && hora < 19) {
-    title.innerHTML = msgTarde + " " + nombre;
+    title.innerHTML = msgTarde + ", " + nombre;
     changeBg("img/tarde.jpg");
   }
 
@@ -87,12 +88,8 @@ setInterval(function cambioCont() {
 }, 1000);
 
 setInterval(function updateFecha() {
-  dateElement.innerHTML =
-    moment().format("dddd") +
-    " " +
-    moment().format("LL") +
-    " " +
-    moment().format("LTS");
+  dateElement.innerHTML = moment().format("dddd") + " " + moment().format("LL");
+  timeElement.innerHTML = moment().format("LTS").padStart(11, '0');
 }, 1000);
 
 function formatHour(hora) {
@@ -182,15 +179,17 @@ async function getWeather(latitude, longitude) {
 }
 
 function addSitio(data) {
+  let container = document.getElementById("shortcuts");
   data.forEach((element) => {
-    const sitio = `     <div>
-  <a class='sitio' href="${element.url}"  target="_blank">
-      <img src="${element.img}" alt="${element.title}">
-  </a>
+    const sitio = `     <div class="shortcut-item">
+      <img onclick="openSite('${element.url}')" src="${element.img}" alt="${element.title}">
 </div>`;
-    let container = document.getElementById("shorcuts");
     container.innerHTML += sitio;
   });
+}
+
+function openSite(url) {
+  window.open(url, "_blank");
 }
 
 addSitio(sites);

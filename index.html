@@ -12,30 +12,32 @@
   <body>
     <div class="container">
       <div class="header">
-        <h1 id="title">Landing Newtab</h1>
-        <h2 id="subtitle">¿Quieres visitar algun sitio frecuente?</h2>
+        <div class="date">
+          <p id="temp">0 °C</p>
+          <p id="date-placeholder"></p>
+          <p id="time-placeholder"></p>
+        </div>
+        <div class="titles">
+          <h1 id="title">Landing Newtab</h1>
+          <h2 id="subtitle">¿Quieres visitar algun sitio frecuente?</h2>
+        </div>
       </div>
 
       <div class="content">
-        <div id="shorcuts"></div>
-        <p id="date-placeholder"></p>
+        <div id="shortcuts"></div>
       </div>
 
       <div class="footer">
-        <div>
-          <p id="temp">0 °C</p>
-        </div>
-        <div>
-          <button id="idioma" onclick="changeLang()">ESP</button>
-          <input
-            type="text"
-            autocomplete="off"
-            placeholder="Nombre / Name"
-            id="text-field"
-            oninput="changeName()"
-            maxlength="50"
-          />
-        </div>
+        <button class="glass-bg" id="lang-button" onclick="changeLang()">ESP</button>
+        <input
+          class="glass-bg"
+          type="text"
+          autocomplete="off"
+          placeholder="Nombre / Name"
+          id="text-field"
+          oninput="changeName()"
+          maxlength="50"
+        />
       </div>
     </div>
   </body>
