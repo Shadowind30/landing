@@ -18,8 +18,6 @@ let idioma = localStorage.idioma ? localStorage.idioma : "ESP";
 let hora = 0;
 let nombre = getName();
 
-let horaPunto = moment().format("LT").toLowerCase().split("");
-
 const sites = [
   {
     url: "https://www.youtube.com/",
@@ -53,27 +51,29 @@ if (!!localStorage.nombre) {
   input.value = nombre;
 }
 
-if (horaPunto[1] === ":") {
-  horaPunto.unshift("0");
-}
-
 function updateTemplate() {
   nombre = getName();
   subtitle.innerText = msgSitios;
   langButton.innerText = txtIdioma;
 }
 
-horaPunto[3] = "0";
-horaPunto[4] = "0";
-horaPunto = horaPunto.join("");
-hora = formatHour(horaPunto);
-
+function getHourArray() {
+  let horaPunto = moment().format("LT").toLowerCase().split("");
+  if (horaPunto[1] === ":") {
+    horaPunto.unshift("0");
+  }
+  horaPunto[3] = "0";
+  horaPunto[4] = "0";
+  horaPunto = horaPunto.join("");
+  return horaPunto;
+}
 
 // #region Recursividad
 
 let expected = Date.now() + 1000;
 
 function step() {
+  hora = formatHour(getHourArray());
   updateFecha();
   cambioCont();
   const dt = Date.now() - expected;
@@ -107,7 +107,6 @@ function updateFecha() {
 setTimeout(step, 1000);
 
 // #endregion
-
 
 function formatHour(hora) {
   let nHora = Number(hora[0] + hora[1]);
