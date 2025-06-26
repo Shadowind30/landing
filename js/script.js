@@ -68,7 +68,20 @@ horaPunto[4] = "0";
 horaPunto = horaPunto.join("");
 hora = formatHour(horaPunto);
 
-setInterval(function cambioCont() {
+
+// #region Recursividad
+
+let expected = Date.now() + 1000;
+
+function step() {
+  updateFecha();
+  cambioCont();
+  const dt = Date.now() - expected;
+  expected += 1000;
+  setTimeout(step, Math.max(0, 1000 - dt));
+}
+
+function cambioCont() {
   if (hora >= 19 || hora < 6) {
     title.innerHTML = msgNoche + ", " + nombre;
     changeBg("img/noche.webp");
@@ -83,14 +96,18 @@ setInterval(function cambioCont() {
     title.innerHTML = msgTarde + ", " + nombre;
     changeBg("img/tarde.jpg");
   }
-
   tab.innerHTML = title.innerHTML;
-}, 1000);
+}
 
-setInterval(function updateFecha() {
+function updateFecha() {
   dateElement.innerHTML = moment().format("dddd") + " " + moment().format("LL");
-  timeElement.innerHTML = moment().format("LTS").padStart(11, '0');
-}, 1000);
+  timeElement.innerHTML = moment().format("LTS").padStart(11, "0");
+}
+
+setTimeout(step, 1000);
+
+// #endregion
+
 
 function formatHour(hora) {
   let nHora = Number(hora[0] + hora[1]);
