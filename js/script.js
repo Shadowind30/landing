@@ -13,6 +13,7 @@ let msgTarde = "Buenas Tardes";
 let msgNoche = "Buenas Noches";
 let msgSitios = "Quieres visitar algun sitio frecuente?";
 let txtIdioma = "ESP";
+let currentBG = '#000';
 
 let idioma = localStorage.idioma ? localStorage.idioma : "ESP";
 let hora = 0;
@@ -82,26 +83,32 @@ function step() {
 }
 
 function cambioCont() {
+  let currentTitle = title.innerText;
+  let newTitle;
   if (hora >= 19 || hora < 6) {
-    title.innerHTML = msgNoche + ", " + nombre;
+    newTitle = msgNoche + ", " + nombre;
     changeBg("img/noche.webp");
   }
 
   if (hora >= 6 && hora < 12) {
-    title.innerHTML = msgDia + ", " + nombre;
+    newTitle = msgDia + ", " + nombre;
     changeBg("img/dia.webp");
   }
 
   if (hora >= 12 && hora < 19) {
-    title.innerHTML = msgTarde + ", " + nombre;
+    newTitle = msgTarde + ", " + nombre;
     changeBg("img/tarde.jpg");
   }
-  tab.innerHTML = title.innerHTML;
+
+  if(currentTitle === newTitle) return;
+
+  title.innerText = newTitle;
+  tab.innerText = newTitle;
 }
 
 function updateFecha() {
-  dateElement.innerHTML = moment().format("dddd") + " " + moment().format("LL");
-  timeElement.innerHTML = moment().format("LTS").padStart(11, "0");
+  dateElement.innerText = moment().format("dddd") + " " + moment().format("LL");
+  timeElement.innerText = moment().format("LTS").padStart(11, "0");
 }
 
 setTimeout(step, 1000);
@@ -129,8 +136,10 @@ function changeName() {
   nombre = getName();
 }
 
-function changeBg(fondoUrl) {
-  document.documentElement.style.setProperty("--imagen", `url(${fondoUrl}`);
+function changeBg(newBG) {
+  if(currentBG === newBG) return;
+  currentBG = newBG;
+  document.documentElement.style.setProperty("--imagen", `url(${newBG}`);
 }
 
 function setLocale() {
