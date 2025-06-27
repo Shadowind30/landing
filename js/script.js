@@ -13,8 +13,10 @@ let msgTarde = "Buenas Tardes";
 let msgNoche = "Buenas Noches";
 let msgSitios = "Quieres visitar algun sitio frecuente?";
 let txtIdioma = "ESP";
+let txtName = "Nombre";
+let currentBG = "#000";
 
-let idioma = localStorage.idioma ? localStorage.idioma : "ESP";
+let idioma = localStorage.idioma ? localStorage.idioma : getBrowserLang();
 let hora = 0;
 let nombre = getName();
 
@@ -55,6 +57,7 @@ function updateTemplate() {
   nombre = getName();
   subtitle.innerText = msgSitios;
   langButton.innerText = txtIdioma;
+  input.placeholder = txtName;
 }
 
 function getHourArray() {
@@ -82,26 +85,32 @@ function step() {
 }
 
 function cambioCont() {
+  let currentTitle = title.innerText;
+  let newTitle;
   if (hora >= 19 || hora < 6) {
-    title.innerHTML = msgNoche + ", " + nombre;
+    newTitle = msgNoche + ", " + nombre;
     changeBg("img/noche.webp");
   }
 
   if (hora >= 6 && hora < 12) {
-    title.innerHTML = msgDia + ", " + nombre;
+    newTitle = msgDia + ", " + nombre;
     changeBg("img/dia.webp");
   }
 
   if (hora >= 12 && hora < 19) {
-    title.innerHTML = msgTarde + ", " + nombre;
+    newTitle = msgTarde + ", " + nombre;
     changeBg("img/tarde.jpg");
   }
-  tab.innerHTML = title.innerHTML;
+
+  if (currentTitle === newTitle) return;
+
+  title.innerText = newTitle;
+  tab.innerText = newTitle;
 }
 
 function updateFecha() {
-  dateElement.innerHTML = moment().format("dddd") + " " + moment().format("LL");
-  timeElement.innerHTML = moment().format("LTS").padStart(11, "0");
+  dateElement.innerText = moment().format("dddd") + " " + moment().format("LL");
+  timeElement.innerText = moment().format("LTS").padStart(11, "0");
 }
 
 setTimeout(step, 1000);
@@ -120,7 +129,7 @@ function formatHour(hora) {
 
 function getName() {
   const ls = localStorage;
-  txtUsuario = ls.idioma === "ESP" ? "Usuario" : "User";
+  txtUsuario = ls.idioma === "es" ? "Usuario" : "User";
   return !ls.nombre ? txtUsuario : ls.nombre;
 }
 
@@ -129,44 +138,77 @@ function changeName() {
   nombre = getName();
 }
 
-function changeBg(fondoUrl) {
-  document.documentElement.style.setProperty("--imagen", `url(${fondoUrl}`);
+function changeBg(newBG) {
+  if (currentBG === newBG) return;
+  currentBG = newBG;
+  document.documentElement.style.setProperty("--imagen", `url(${newBG}`);
 }
 
 function setLocale() {
-  if (idioma === "ENG") {
-    moment.locale("EN-US");
-  } else {
-    moment.locale("ES-DO");
+  switch (idioma) {
+    case "en":
+      moment.locale("EN-US");
+      break;
+    case "es":
+      moment.locale("ES-DO");
+      break;
+    default:
+      moment.locale("EN-US");
+      break;
   }
   localStorage.idioma = idioma;
 }
 
+function getBrowserLang() {
+  const nav = window.navigator;
+  const fullLang =
+    (Array.isArray(nav.languages) && nav.languages.length
+      ? nav.languages[0]
+      : nav.language || nav.userLanguage) || "en";
+
+  return fullLang.slice(0, 2).toLowerCase();
+}
+
+console.log(getBrowserLang());
+
 function changeLang() {
-  localStorage.setItem("idioma", idioma === "ESP" ? "ENG" : "ESP");
+  localStorage.setItem("idioma", idioma === "en" ? "es" : "en");
   idioma = localStorage.idioma;
   changeText();
-
   setLocale();
 }
 
+const setENTexts = () => {
+  txtUsuario = "User";
+  msgDia = "Good Morning";
+  msgTarde = "Good Afternoon";
+  msgNoche = "Good Night";
+  msgSitios = "Do you wanna go somewhere?";
+  txtIdioma = "ENG";
+  txtName = "Name";
+};
+
+const setESTexts = () => {
+  txtUsuario = "Usuario";
+  msgDia = "Buenos Dias";
+  msgTarde = "Buenas Tardes";
+  msgNoche = "Buenas Noches";
+  msgSitios = "¿Quieres visitar algun sitio frecuente?";
+  txtIdioma = "ESP";
+  txtName = "Nombre";
+};
+
 function changeText() {
-  if (localStorage.idioma === "ENG") {
-    txtUsuario = "User";
-    msgDia = "Good Morning";
-    msgTarde = "Good Afternoon";
-    msgNoche = "Good Night";
-    msgSitios = "Do you wanna go somewhere?";
-    msgAlerta = "Field cannot be empty";
-    txtIdioma = "ENG";
-  } else {
-    txtUsuario = "Usuario";
-    msgDia = "Buenos Dias";
-    msgTarde = "Buenas Tardes";
-    msgNoche = "Buenas Noches";
-    msgSitios = "¿Quieres visitar algun sitio frecuente?";
-    msgAlerta = "El campo no puede estar vacio";
-    txtIdioma = "ESP";
+  switch (localStorage.idioma) {
+    case "en":
+      setENTexts();
+      break;
+    case "es":
+      setESTexts();
+      break;
+    default:
+      setENTexts();
+      break;
   }
   updateTemplate();
 }
