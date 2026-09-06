@@ -67,6 +67,14 @@ body {
 #temp {
   font-size: 20px;
   font-weight: 900;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease;
+}
+
+#temp.visible {
+  opacity: 1;
+  visibility: visible;
 }
 
 .titles {

@@ -215,17 +215,15 @@ function changeText() {
 
 changeText();
 
-function getLocation() {
-  let position = null;
-  navigator.geolocation.getCurrentPosition((pos) => {
-    position = {
-      latitude: pos.coords.latitude,
-      longitude: pos.coords.longitude,
-    };
-    getWeather(position.latitude, position.longitude);
-  });
-
-  return position;
+async function getLocation() {
+  try {
+    let res = await fetch("https://ipwho.is/");
+    let data = await res.json();
+    if (!data.success) return;
+    getWeather(data.latitude, data.longitude);
+  } catch (e) {
+    //console.log(e)
+  }
 }
 async function getWeather(latitude, longitude) {
   let res = await fetch(
@@ -233,7 +231,9 @@ async function getWeather(latitude, longitude) {
   );
   let data = await res.json();
   //console.log(data.current.temp)
+  if (data.main === undefined) return;
   tempPlaceHolder.innerText = data.main.temp + " °C";
+  tempPlaceHolder.classList.add("visible");
 }
 
 function addSitio(data) {
