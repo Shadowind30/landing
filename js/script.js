@@ -53,11 +53,19 @@ if (!!localStorage.nombre) {
   input.value = nombre;
 }
 
+function reveal(element) {
+  void element.offsetWidth; // flush styles so the transition runs
+  element.classList.add("visible");
+}
+
 function updateTemplate() {
   nombre = getName();
   subtitle.innerText = msgSitios;
   langButton.innerText = txtIdioma;
   input.placeholder = txtName;
+  reveal(subtitle);
+  reveal(langButton);
+  reveal(input);
 }
 
 function getHourArray() {
@@ -73,12 +81,18 @@ function getHourArray() {
 
 // #region Recursividad
 
-let expected = Date.now() + 1000;
+let expected = Date.now();
+let fechaRevelada = false;
 
 function step() {
   hora = formatHour(getHourArray());
   updateFecha();
   cambioCont();
+  if (!fechaRevelada) {
+    fechaRevelada = true;
+    reveal(dateElement);
+    reveal(timeElement);
+  }
   const dt = Date.now() - expected;
   expected += 1000;
   setTimeout(step, Math.max(0, 1000 - dt));
@@ -106,14 +120,13 @@ function cambioCont() {
 
   title.innerText = newTitle;
   tab.innerText = newTitle;
+  reveal(title);
 }
 
 function updateFecha() {
   dateElement.innerText = moment().format("dddd") + " " + moment().format("LL");
   timeElement.innerText = moment().format("LTS").padStart(11, "0");
 }
-
-setTimeout(step, 1000);
 
 // #endregion
 
@@ -233,16 +246,27 @@ async function getWeather(latitude, longitude) {
   //console.log(data.current.temp)
   if (data.main === undefined) return;
   tempPlaceHolder.innerText = data.main.temp + " °C";
-  tempPlaceHolder.classList.add("visible");
+  reveal(tempPlaceHolder);
 }
 
 function addSitio(data) {
   let container = document.getElementById("shortcuts");
   data.forEach((element) => {
-    const sitio = `     <div class="shortcut-item">
+    const sitio = `     <div class="shortcut-item fade-in">
       <img onclick="openSite('${element.url}')" src="${element.img}" alt="${element.title}">
 </div>`;
     container.innerHTML += sitio;
+  });
+
+  container.querySelectorAll(".shortcut-item").forEach((item, i) => {
+    const img = item.querySelector("img");
+    const show = () => setTimeout(() => reveal(item), i * 80);
+    if (img.complete) {
+      show();
+      return;
+    }
+    img.addEventListener("load", show, { once: true });
+    img.addEventListener("error", show, { once: true });
   });
 }
 
@@ -250,5 +274,6 @@ function openSite(url) {
   window.open(url, "_blank");
 }
 
+step();
 addSitio(sites);
 getLocation();
